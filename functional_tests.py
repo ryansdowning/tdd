@@ -1,10 +1,13 @@
 from selenium import webdriver
+from selenium.webdriver import FirefoxOptions
 
-browser = webdriver.Firefox()
+opts = FirefoxOptions()
+opts.add_argument("--headless")
+browser = webdriver.Firefox(firefox_options=opts)
 
 # Edith has heard about a cool new online to-do app. She goes
 # to check out its homepage
-browser.get('http://localhost:1337')
+browser.get('localhost:8005')
 
 # She notices the page title and header mention to-do lists
 assert 'To-Do' in browser.title
