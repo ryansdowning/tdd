@@ -87,7 +87,9 @@ class NewVisitorTest(LiveServerTestCase):
         ## We use a new browser session to make sure that no information
         ## of Edith's is coming through from cookies etc
         self.browser.quit()
-        self.browser = webdriver.Firefox()
+        opts = FirefoxOptions()
+        opts.add_argument("--headless")
+        self.browser = webdriver.Firefox(firefox_options=opts)
 
         # Francis visits the home page. There is no sigh of Edith's list
         self.browser.get(self.live_server_url)
@@ -110,13 +112,3 @@ class NewVisitorTest(LiveServerTestCase):
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
         self.assertIn('Buy milk', page_text)
-# The page updates again, and now shows both items on her list
-
-# Edith wonders whether the site will remember her list. Then she sees
-# that the site has generated a unique URL for her -- there is some
-# explanatory text to that effect.
-
-# She visits that URL - her to-do list is still there.
-
-# Satisfied, she goes back to sleep
-
