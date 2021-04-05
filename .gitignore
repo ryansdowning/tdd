@@ -4,3 +4,4 @@ virtualenv
 poetry.lock
 __pycache__/
 *.pyc
+/static
